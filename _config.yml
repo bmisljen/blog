@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Boris Web App Development
 email: boris@boriswebappdevelopment.ca
-description: Boris Web App Development blog
+description: Boris Web App Development Blog
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 production_url : https://bmisljen.github.io/blog
 url: "https://bmisljen.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -36,7 +36,7 @@ footer-links:
   instagram:
   linkedin:
   pinterest:
-  rss: # just type anything here for a working RSS icon
+  rss: # subscribe
   twitter: boris_webandapp
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>

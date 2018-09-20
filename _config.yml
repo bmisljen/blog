@@ -16,6 +16,7 @@
 title: Boris Web App Development
 email: boris@boriswebappdevelopment.ca
 description: Boris Web App Development Blog
+name: Boris Web App Development
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 production_url : https://bmisljen.github.io/blog
 url: "https://bmisljen.github.io" # the base hostname & protocol for your site, e.g. http://example.com
@@ -24,7 +25,8 @@ github_username:  bmisljen
 disqus: boris-web-app-development
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-midnight
+theme: minima
+permalink: /:year/:month/:day/:title/
 plugins:
   - jekyll-feed
 

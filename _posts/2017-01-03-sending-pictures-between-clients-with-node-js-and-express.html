@@ -38,7 +38,6 @@ author:
 <p>This form accepts image types and contains a button called "Send Media". When this button is clicked, the form is submitted and the picture is sent to the other client to be displayed in their web chat window.</p>
 <h5>Step 2 - The CSS</h5>
 <p>We can't have HTML without some CSS to make it look pretty:</p>
-<pre>/* ------ Send Media File -------*/
 
 {% highlight css %}
 button, div.filebutton {
@@ -95,7 +94,7 @@ div.filebutton {
 <p>So now we have a form with a pretty button that accepts a picture and does nothing to it. Time to add some Node.js client code to send and receive as well as display the picture (in chat.js):</p>
 
 {% highlight javascript %}
-<pre>sendMediaForm.change('uploadMedia', function (e) {
+sendMediaForm.change('uploadMedia', function (e) {
  var selectedMedia = e.originalEvent.target.files[0];
  sendMedia(selectedMedia);
  });
@@ -113,14 +112,14 @@ div.filebutton {
  else {
  alert("Please Select an Image, Video or Audio File.");
  }
- }</pre>
+ }
  {% endhighlight %}
  
 <p>Here we are using jQuery to trigger on the upload button of the form to call a function to emit the picture over a Socket.io socket to the Node.js server. The image is loaded by a FileReader object by calling the readAsDataURL() method.</p>
 <p>To receive the image from the server we need to listen to the Socket.io socket for an event from the Node.js server:</p>
 
 {% highlight javascript %}
-<pre>socket.on('receiveMedia', function (data) {
+socket.on('receiveMedia', function (data) {
 
 showMessage("chatStarted");
 
@@ -130,11 +129,10 @@ showMessage("chatStarted");
  });
  {% endhighlight %}
 
-</pre>
 <p>This Socket.io listener waits for the "receiveMedia" message from the Node.js server and sends the data to a Javascript function to display the image to the other chat user:</p>
 
 {% highlight javascript %}
-<pre>// Function that creates a new media message
+// Function that creates a new media message
  function createMediaMessage(user,imgg,mediaSend,now) {
 
 var who = '';
@@ -164,18 +162,18 @@ chats.append(li);
 
 messageTimeSent = $(".timesent");
  messageTimeSent.last().text(now.fromNow());
- }</pre>
+ }
  {% endhighlight %}
 <p>The image is embedded into the jQuery li variable which is displayed on the chat screen.</p>
 <h6>Step 4 - Node.js Server Code</h6>
-<p>FInally, the Node.js server routes the images from one client to another. We have a simple Socket.io listenser to accept images and broadcast them back to the other users in the chatroom in routes.js:</p>
+<p>Finally, the Node.js server routes the images from one client to another. We have a simple Socket.io listenser to accept images and broadcast them back to the other users in the chatroom in routes.js:</p>
 
 {% highlight javascript %}
-<pre>// Handle the sending of media files
+// Handle the sending of media files
  socket.on('sendMedia', function (data) {
  // When the server receives a media file, it sends it to the other person in the room.
  socket.broadcast.to(socket.room).emit('receiveMedia', { mediaSend: data.mediaSend, user: data.user, img: data.img });
- });</pre>
+ });
  {% endhighlight %}
 <p>&nbsp;</p>
 <p>I hope you liked this simple tutorial of how to send images with Node.js, Express and Socket.io. For the complete chatroom project please see it on my <a href="https://github.com/bmisljen/Node.js-Ultimate-Chatroom">GitHub</a>. I will post again with more updates on the project!</p>
